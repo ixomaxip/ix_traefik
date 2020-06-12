@@ -1,0 +1,25 @@
+entryPoints:
+  websecure:
+    address: :443
+    http:
+      tls: true
+  web:
+    address: :80
+    # http:
+    #   middlewares:
+    #   - to-https
+
+providers:
+  file:
+    watch: true
+    filename: /conf/dynamic_conf.yml
+  docker:
+    exposedByDefault: false
+
+api:
+  insecure: true
+log:
+  level: INFO #DEBUG
+
+metrics:
+  prometheus: {}
