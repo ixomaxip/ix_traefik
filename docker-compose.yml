@@ -20,4 +20,4 @@ services:
 networks:
   default:
     external:
-      name: ix_default
+      name: rt_default
