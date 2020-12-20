@@ -8,7 +8,7 @@ services:
       - 80:80/tcp
       - 443:443/tcp
       - 81:8080/tcp
-      - 8080:80/tcp
+      # - 8080:80/tcp
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -16,6 +16,22 @@ services:
       - ./conf:/conf:rw
       - ./conf/traefik.yml:/etc/traefik/traefik.yml:ro
       - ./conf/acme.json:/acme.json
+    labels:
+      - "traefik.enable=true"
+      # - "traefik.http.routers.dashboard.rule=PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+      - "treafik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=admin:$$apr1$$UcOFJ2TN$$.0eVxYT0hNb7lSj7owwXV0"
+      - "traefik.http.routers.traefik.rule=PathPrefix(`/traefik`)"
+      - "traefik.http.routers.traefik.middlewares=traefik-stripprefix"
+      - "traefik.http.middlewares.traefik-stripprefix.stripprefix.prefixes=/traefik"
+      # - "traefik.http.routers.traefik.entrypoints=https"
+      # - "traefik.http.routers.traefik.rule=Host(`traefik.ixomaxip.keenetic.pro`)"
+      # - "traefik.http.routers.traefik.tls=true"
+      # - "traefik.http.routers.traefik.tls.certresolver=letsEncrypt"
+      - "traefik.http.routers.traefik.service=api@internal"
+      # traefik.http.services.traefik-traefik.loadbalancer.server.port: 888
+
     restart: always
 
 networks:
