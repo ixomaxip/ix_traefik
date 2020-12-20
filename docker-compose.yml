@@ -19,18 +19,18 @@ services:
     labels:
       - "traefik.enable=true"
       # - "traefik.http.routers.dashboard.rule=PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
-      - "treafik.http.routers.dashboard.service=api@internal"
-      - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
-      - "traefik.http.middlewares.dashboard-auth.basicauth.users=admin:$$apr1$$UcOFJ2TN$$.0eVxYT0hNb7lSj7owwXV0"
+      # - "treafik.http.routers.dashboard.service=api@internal"
+      # - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
+      # - "traefik.http.middlewares.dashboard-auth.basicauth.users=admin:$$apr1$$UcOFJ2TN$$.0eVxYT0hNb7lSj7owwXV0"
       - "traefik.http.routers.traefik.rule=PathPrefix(`/traefik`)"
       - "traefik.http.routers.traefik.middlewares=traefik-stripprefix"
       - "traefik.http.middlewares.traefik-stripprefix.stripprefix.prefixes=/traefik"
       # - "traefik.http.routers.traefik.entrypoints=https"
-      # - "traefik.http.routers.traefik.rule=Host(`traefik.ixomaxip.keenetic.pro`)"
+      # - "traefik.http.routers.traefik.rule=Host(`traefik.local`)"
       # - "traefik.http.routers.traefik.tls=true"
       # - "traefik.http.routers.traefik.tls.certresolver=letsEncrypt"
       - "traefik.http.routers.traefik.service=api@internal"
-      # traefik.http.services.traefik-traefik.loadbalancer.server.port: 888
+      - "traefik.http.services.traefik-traefik.loadbalancer.server.port=8080"
 
     restart: always
 
