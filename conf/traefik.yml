@@ -1,4 +1,10 @@
 entryPoints:
+  dashboard:
+    address: ':8080'
+    auth:
+      basic:
+        users:
+          - 'admin:$apr1$Z2yQyXmO$KLYy4x/RW7RKZmleANY9t/'
   websecure:
     address: :443
     http:
@@ -18,6 +24,7 @@ providers:
 
 api:
   insecure: true
+  dashboard: true
 log:
   level: INFO #DEBUG
 
