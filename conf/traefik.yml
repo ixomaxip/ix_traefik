@@ -1,3 +1,7 @@
+api:
+  # insecure: true
+  dashboard: true
+
 entryPoints:
   http:
     address: ":80"
@@ -23,11 +27,13 @@ providers:
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
 
-certificatesResolvers:
-  letsEncrypt:
-    acme:
-      email: ixomaxip@ixomaxip.com
-      storage: acme.json
-      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-      httpChallenge:
-        entryPoint: http
+log:
+  level: DEBUG
+# certificatesResolvers:
+#   letsEncrypt:
+#     acme:
+#       email: ixomaxip@ixomaxip.keenetic.pro
+#       storage: acme.json
+#       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+#       httpChallenge:
+#         entryPoint: http
