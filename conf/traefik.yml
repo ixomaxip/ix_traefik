@@ -1,32 +1,24 @@
 entryPoints:
-  dashboard:
-    address: ':8080'
-    auth:
-      basic:
-        users:
-          - 'admin:$apr1$Z2yQyXmO$KLYy4x/RW7RKZmleANY9t/'
-  websecure:
-    address: :443
-    http:
-      tls: true
-  web:
-    address: :80
-    # http:
-    #   middlewares:
-    #   - to-https
+  http:
+    address: ":80"
+  https:
+    address: ":443"
+
+http:
+  routers:
+    http-catchall:
+      rule: hostregexp(`{host:.+}`)
+      entrypoints:
+      - http
+      middlewares:
+      - redirect-to-https
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: false
 
 providers:
-  file:
-    watch: true
-    filename: /conf/dynamic_conf.yml
   docker:
+    endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
-
-api:
-  insecure: true
-  dashboard: true
-log:
-  level: INFO #DEBUG
-
-metrics:
-  prometheus: {}
