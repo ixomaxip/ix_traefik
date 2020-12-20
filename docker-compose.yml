@@ -15,6 +15,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./conf:/conf:rw
       - ./conf/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./conf/acme.json:/acme.json
     restart: always
 
 networks:
