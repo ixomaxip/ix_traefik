@@ -12,7 +12,7 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./conf:/conf:rw
       - ./conf/traefik.yml:/etc/traefik/traefik.yml:ro
     restart: always
