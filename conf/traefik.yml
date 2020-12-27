@@ -3,14 +3,23 @@ log:
   level: DEBUG
 
 api:
-  # insecure: true
+  insecure: true
   dashboard: true
+  debug: true
 
 entryPoints:
   http:
-    address: ":80"
+    address: :80
   https:
-    address: ":443"
+    address: :443
+
+providers:
+  # file:
+  #   watch: true
+  #   filename: /conf/dynamic_conf.yml
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
 
 http:
   routers:
@@ -26,20 +35,12 @@ http:
         scheme: https
         permanent: false
 
-providers:
-  file:
-    watch: true
-    filename: /conf/dynamic_conf.yml
-  docker:
-    endpoint: "unix:///var/run/docker.sock"
-    exposedByDefault: false
 
-
-# certificatesResolvers:
-#   letsEncrypt:
-#     acme:
-#       email: postmaster@example.com
-#       storage: acme.json
-#       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-#       httpChallenge:
-#         entryPoint: http
+certificatesResolvers:
+  le:
+    acme:
+      email: ixomaxip@gmail.com
+      storage: acme.json
+      # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      httpChallenge:
+        entryPoint: http
