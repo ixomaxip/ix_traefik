@@ -7,8 +7,11 @@ services:
     ports:
       - 80:80/tcp
       - 443:443/tcp
-      - 81:8080/tcp
+      # - 81:8080/tcp
       # - 8080:80/tcp
+    environment: 
+      CLOUDFLARE_EMAIL: ${CLOUDFLARE_EMAIL}
+      CLOUDFLARE_API_KEY: ${CLOUDFLARE_API_KEY}
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -16,16 +19,16 @@ services:
       - ./conf:/conf:rw
       - ./conf/traefik.yml:/etc/traefik/traefik.yml:ro
       - ./conf/acme.json:/acme.json
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.test4.rule=Host(`traefik.ixomaxip.keenetic.pro`)"
-      - "traefik.http.routers.test4.service=api@internal"
-      - "traefik.http.routers.test4.middlewares=admin"
-      - "traefik.http.routers.test4.tls.certresolver=le"
-      - "traefik.http.routers.test4.entrypoints=https"
-      - "traefik.http.middlewares.admin.basicauth.users=admin:$$apr1$$UcOFJ2TN$$.0eVxYT0hNb7lSj7owwXV0"
-      - "traefik.http.services.test4-test4.loadbalancer.server.port=65535"
-      # - "traefik.http.routers.test3.rule=Host(`home.ixomaxip.com`) && (PathPrefix(`/traefik`) || PathPrefix(`/api`))"
+    # labels:
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.test4.rule=Host(`traefik.ixomaxip.keenetic.pro`)"
+      # - "traefik.http.routers.test4.service=api@internal"
+      # - "traefik.http.routers.test4.middlewares=admin"
+      # - "traefik.http.routers.test4.tls.certresolver=le"
+      # - "traefik.http.routers.test4.entrypoints=https"
+      # - "traefik.http.middlewares.admin.basicauth.users=admin:$$apr1$$UcOFJ2TN$$.0eVxYT0hNb7lSj7owwXV0"
+      # - "traefik.http.services.test4-test4.loadbalancer.server.port=65535"
+      # # - "traefik.http.routers.test3.rule=Host(`home.ixomaxip.com`) && (PathPrefix(`/traefik`) || PathPrefix(`/api`))"
       # # - "traefik.http.routers.test3.rule=PathPrefix(`/traefik`) || PathPrefix(`/api`)"
       # # - "traefik.http.routers.test3-http.rule=PathPrefix(`/dev/traefik`) || HeadersRegexp(`Referer`, `.*\/dev\/traefik\/.*`)"
       # - "traefik.http.routers.test3.service=api@internal"
