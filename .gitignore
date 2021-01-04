@@ -3,3 +3,5 @@
 conf/cert/localhost+2-key.pem
 conf/cert/localhost+2.pem
 conf/acme.json
+conf/dynamic_conf.toml
+conf/traefik.yml
