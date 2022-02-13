@@ -19,7 +19,7 @@ run-rt:
 run-sh:
 	docker-compose run --rm ci bash
 up:
-	docker-compose up -d rt
+	docker-compose up -d --force-recreate rt
 
 ID=`docker-compose ps -q`
 sh:
