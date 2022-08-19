@@ -1,1 +1,4 @@
 .htpasswd
+logs
+acme.json
+.env.local
