@@ -1,1 +1,0 @@
-# Traefik for home purposes

@@ -1,6 +1,0 @@
-tls:
-  stores:
-    default:
-      defaultCertificate:
-        certFile: /conf/cert/localhost+2.pem
-        keyFile: /conf/cert/localhost+2-key.pem
