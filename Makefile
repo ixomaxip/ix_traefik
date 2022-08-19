@@ -1,3 +1,6 @@
+include .env
+-include .env.local
+
 T2_ROOT=traefik2
 T2_DIRS='acme' 'rules' 'rules/cloudserver'
 
