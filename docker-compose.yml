@@ -9,3 +9,22 @@ networks:
     ipam:
       config:
         - subnet: 192.168.66.0/24
+
+x-environment:
+  TZ: ${TZ}
+  PUID: ${PUID}
+  PGID: ${PGID}
+ 
+x-common-keys-core:
+  networks:
+    - t2_proxy
+  security_opt:
+    - no-new-privileges:true
+  restart: always
+ 
+x-common-keys-apps:
+  networks:
+    - t2_proxy
+  security_opt:
+    - no-new-privileges:true
+  restart: unless-stopped
